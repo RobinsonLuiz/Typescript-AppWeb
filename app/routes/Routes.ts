@@ -17,24 +17,30 @@ export default class Routes {
 
     constructor() {
         this._express = express().set('view engine', 'ejs');
-        this._express.set('views', path.join(__dirname, '../../', 'public\/views'));
-        this._express.use(express.static(path.join(__dirname, '../../', 'public')));
         this._router = express.Router();
-        this._session = 'session-rbn';
-        this._store = new session.MemoryStore();
-        this._cookie = cookieParser(this._session)
-        this._express.use(this._cookie);
-        this._express.use(bodyParser.urlencoded({extended : true}));
-        this._express.set('trust proxy', 1);
-        this._express.use(session({
-            name: 'robinson',
-            secret: this._session,
-            resave: false,
-            store: this._store,
-            saveUninitialized: true
-        }))
+        this.middlewares();
         this.rotas();
     };
+
+    private middlewares() {
+        this.express.set('views', path.join(__dirname, '../../', 'public\/views'));
+        this.express.use(express.static(path.join(__dirname, '../../', 'public')));
+        this._session = 'session-storage';
+        this._store = new session.MemoryStore();
+        this._cookie = cookieParser(this._session);
+        this.express.use(this._cookie);
+        this.express.use(bodyParser.urlencoded({ extended : true }));
+        this.express.set('trust proxy', 1);
+        this.express.use(
+            session({
+                name: 'session-storage',
+                secret: this._session,
+                resave: true,
+                store: this._store,
+                saveUninitialized: true
+            })
+        );
+    }
     
     private criarRotas(rota: any, callback: any, method: string) {
         if (method == 'get')

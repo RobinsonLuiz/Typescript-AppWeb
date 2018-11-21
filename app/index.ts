@@ -5,5 +5,5 @@ new routes().express.listen(port, (err) => {
   if (err) {
     return console.log(err)
   }
-  return console.log(`server is listening on ${port}`)
+  return console.log(`Server escutando na porta:  ${port}`)
 });
