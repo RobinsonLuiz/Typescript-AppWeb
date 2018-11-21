@@ -12,5 +12,7 @@
     },
     "include": [
         "app/**/*"
-    ]
+    ],
+    "compileOnSave": true,
+    "buildOnSave": true
 }
