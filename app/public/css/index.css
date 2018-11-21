@@ -1,0 +1,42 @@
+.correto {
+    border-color: greenyellow;
+}
+
+.errado {
+    border-color: red;
+}
+
+.color-btn {
+    border: 1px solid aqua;
+}
+
+.success {
+    background-color: #00e673;
+}
+
+.success-login {
+    background-color: #00e673;
+}
+
+.success-active {
+    background-color: dodgerblue;
+}
+
+.error {
+    background-color: #ff5c33;
+}
+
+.error-login {
+    background-color: #ff5c33;
+}
+
+.control {
+    width: 100%;
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    color: #495057;
+    background-clip: padding-box;
+    border-radius: .25rem;
+    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}

@@ -1,0 +1,16 @@
+{
+    "compilerOptions": {
+        "target": "es5",
+        "outDir": "app/jsBuilded",
+        "lib": [
+            "es2015",
+            "es5"
+        ],
+        "noEmitOnError": true, 
+        "noImplicitAny": false,
+        "removeComments": true
+    },
+    "include": [
+        "app/**/*"
+    ]
+}

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Controle de Tarefas</title>
+    <link rel="stylesheet" type="text/css" href="../vendor/bootstrap/css/bootstrap.min.css">
+    <style type="text/css">
+        form.ativar {
+            max-width: 350px;
+            margin: 0 auto;
+            padding-top: 2em;
+        }
+    </style>
+
+    <body>
+        <form method="post" action="/ativar" class="form ativar">
+            <h3>Ative sua conta</h3>
+            <div class="form-group">
+                <label for="email">E-mail:</label>
+                <input type="text" id="email" value="<%=usuario.email%>" name="email" class="form-control" maxlength="100" size="60" disabled>
+                <input type="hidden" name="id" value="<%=usuario.id%>" class="form-control" maxlength="100" size="60">
+            </div>
+            <div class="form-group">
+                <label for="codigo-2">Nova Senha:</label>
+                <input type="password" id="senha" name="senha" class="form-control" maxlength="20" size="20" placeholder="A senha deve conter no minimo 6 digitos">
+            </div>
+            <div class="form-group">
+                <label for="codigo-1">Repita Senha:</label>
+                <input type="password" id="confirmarsenha" name="confirmarsenha" class="form-control" maxlength="20" size="20">
+            </div>
+            <button type="submit" class="btn btn-large btn-outline-primary btn-confirmar" disabled>
+                <i class="fa fa-sign-in" aria-hidden="true"></i>&nbsp; Cadastrar Senha
+            </button>
+            <a href="/reenviar" style="margin-left: 2emx">Re-enviar código de acesso</a>
+        </form>
+
+        </main>
+
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js"></script>
+        <script src="/js/bootstrap.bundle.min.js"></script>
+        <script src="../js/confirmar-form.js"></script>
+    </body>
+
+</html>

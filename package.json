@@ -1,0 +1,35 @@
+{
+  "name": "projetinho",
+  "version": "1.0.0",
+  "description": "",
+  "main": "./app/jsBuilded/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "compile": "tsc",
+    "watch": "tsc -w",
+    "start": "concurrently \"npm run watch\" \"nodemon\""
+  },
+  "author": "Robinson Luiz",
+  "license": "ISC",
+  "dependencies": {
+    "@types/es6-promise": "^3.3.0",
+    "@types/express": "^4.16.0",
+    "browserify": "^16.2.3",
+    "concurrently": "^4.0.1",
+    "cookie-parser": "^1.4.3",
+    "ejs": "^2.6.1",
+    "express": "^4.16.3",
+    "express-session": "^1.15.6",
+    "google-translate-api": "^2.3.0",
+    "lite-server": "^2.4.0",
+    "nodemailer": "^4.6.8",
+    "request": "^2.88.0",
+    "requestretry": "^3.0.1",
+    "tsify": "^4.0.0",
+    "typescript": "^3.1.2",
+    "uuid": "^3.3.2"
+  },
+  "devDependencies": {
+    "pg": "^7.6.0"
+  }
+}

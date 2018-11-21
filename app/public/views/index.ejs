@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>Controle de Tarefas Assistivo</title>
+  <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="../vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800'
+    rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic,900,900italic'
+    rel='stylesheet' type='text/css'>
+  <link href="../css/creative.min.css" rel="stylesheet">
+  <link rel="icon" href="../images/icons/icone.ico" />
+  <link href="../css/index.css" rel="stylesheet">
+  <link rel="manifest" href="../manifest.json">
+
+</head>
+<%if (!usuario) {%>
+<body id="page-top">
+  <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+    <div class="container">
+      <a class="navbar-brand" href="#page-top">Controle de Tarefas</a>
+      <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive"
+        aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+              <a class="nav-link" href="">Área do cliente</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#about">Sobre</a>
+          </li>
+          <!-- <li class="nav-item">
+              <a class="nav-link register" href="#services">Alunos</a>
+            </li> -->
+          <li class="nav-item">
+            <a class="nav-link register" data-toggle="modal" data-target="#myModal" href="">Cadastre-se</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link login" data-toggle="modal" data-target="#loginModal" href="">Login</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <header class="masthead text-center text-white d-flex">
+    <div class="container my-auto">
+      <div class="row">
+        <div class="col-lg-10 mx-auto">
+          <h1 class="text-uppercase">
+            <strong>Controle de tarefas assistivas</strong>
+          </h1>
+          <hr>
+        </div>
+        <div class="col-lg-8 mx-auto">
+          <p class="text-faded mb-5">Viabilizando facilitar a inclusão dentro dos espaços de aprendizagem. </p>
+          <a class="btn btn-primary btn-xl register" data-toggle="modal" data-target="#myModal">Cadastre-se</a>
+        </div>
+      </div>
+    </div>
+  </header>
+  
+  <aside role="complementary">
+    <div class="modal fade" id="myModal">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+
+          <!-- Modal Header -->
+          <div class="modal-header">
+            <h4 class="modal-title" role="heading">Cadastro</h4>
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+          </div>
+          <div class="modal-header success" hidden>
+            <h4 class="modal-title" role="heading">Cadastro Realizado com Sucesso!</h4>
+            <button type="button" class="close close-success" data-dismiss="success">&times;</button>
+          </div>
+          <div class="modal-header error" hidden>
+            <h4 class="modal-title" role="heading">Email já cadastrado!</h4>
+            <button type="button" class="close close-error" data-dismiss="error">&times;</button>
+          </div>
+          <div class="modal-header bankerror" hidden>
+            <h4 class="modal-title" role="heading">Desculpe, servidor está ocupado no momento, tente novamente!</h4>
+            <button type="button" class="close close-error" data-dismiss="error">&times;</button>
+          </div>
+          <!-- Modal body -->
+          <div class="modal-body">
+            <div>
+              <div class="form-group">
+                <legend>
+                  <label for="nome">Nome:</label>
+                </legend>
+                <input type="text" id="nome" name="nome" class="color-btn control" placeholder="Digite seu nome">
+              </div>
+              <div class="form-group">
+                <legend>
+                  <label for="email">Email:</label>
+                </legend>
+                <input type="email" id="email" name="email" class="color-btn control" placeholder="Digite seu e-mail">
+              </div>
+              <div class="form-group">
+                <legend>
+                  <label for="name">Telefone:</label>
+                </legend>
+                <input type="tel" id="telefone" name="telefone" class="color-btn control" placeholder="Digite um telefone para contato">
+              </div>
+              <div class="register-btn">
+                <button type="submit" class="btn btn-primary btn-xl btn-modal-register" id="register" disabled>Cadastrar</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Modal footer -->
+          <div class="modal-footer" role="complementary">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </aside>
+  <aside role="complementary">
+    <div class="modal fade" id="loginModal">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+
+          <!-- Modal Header -->
+              
+            <div class="modal-header">
+              <h4 class="modal-title" role="heading">Login</h4>
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-header success-login" hidden>
+              <h4 class="modal-title" role="heading">Login Realizado com Sucesso!</h4>
+              <button type="button" class="close close-success-login" data-dismiss="success">&times;</button>
+            </div>
+            <div class="modal-header success-active" hidden>
+              <h4 class="modal-title" role="heading">Cadastro não ativado, por favor verifique seu email e ative seu cadastro!</h4>
+              <button type="button" class="close close-active" data-dismiss="success">&times;</button>
+            </div>
+            <div class="modal-header error-login" hidden>
+              <h4 class="modal-title" role="heading">Email e/ou senha errados!</h4>
+              <button type="button" class="close close-error-login" data-dismiss="error">&times;</button>
+            </div>
+            <!-- Modal body -->
+            <div class="modal-body">
+              <form action="/login">
+                <div class="form-group">
+                  <legend>
+                    <label for="email">Email:</label>
+                  </legend>
+                  <input type="email" id="emailLogin" name="emailLogin" class="color-btn control" placeholder="Digite seu e-mail">
+                </div>
+                <div class="form-group">
+                  <legend>
+                    <label for="nome">Senha:</label>
+                  </legend>
+                  <input type="password" id="password" name="password" class="color-btn control" placeholder="Digite seu nome">
+                </div>
+                <div class="modal-footer" role="complementary">
+                  <button type="submit" class="btn btn-primary btn-modal-login" id="login" disabled>Login</button>
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+                </div>
+              </form>
+            </div>
+            
+          <!-- Modal footer -->
+         
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <!-- Bootstrap core JavaScript -->
+</body>
+<%} else {%>
+    session funcionando
+  <%}%>
+  <script src="../vendor/jquery/jquery.min.js"></script>
+  <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <!-- Custom scripts for this template -->
+  <script src="../js/creative.min.js"></script>
+  <script src="../js/validar-form.js"></script>
+  <script src="../js/valida-login.js"></script>
+  <script src="../js/register.js"></script>
+  <script src="../js/service-worker.js"></script>
+
+</html>
