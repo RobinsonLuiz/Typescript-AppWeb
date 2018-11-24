@@ -13,12 +13,13 @@ app.post('/', function(req, res){
 });
 
 io.on("connection", function (client) {  
-    client.on("join", function(name){
-        console.log("Entrou: " + name);
-        if (!clients[client.id])
-            client.emit("update", "Você conectou no servidor");
-        clients[client.id] = name;
-        client.broadcast.emit("update", name + " entrou na conversa");
+    client.on("join", function(usuario){
+        let user = JSON.parse(usuario);
+        if (!clients[client.id]) {
+            console.log("Entrou: " + user.nome);
+            clients[client.id] = user;
+            client.broadcast.emit("update", user.nome + " está online");
+        }
     });
 
     client.on("send", function(msg){
@@ -29,7 +30,7 @@ io.on("connection", function (client) {
     client.on("disconnect", function(){
         console.log("Disconnect");
         if (clients[client.id] != undefined) {
-            io.emit("update", clients[client.id] + " saiu do chat");
+            io.emit("update", clients[client.id].nome + " saiu do chat");
             delete clients[client.id];
         }
     });

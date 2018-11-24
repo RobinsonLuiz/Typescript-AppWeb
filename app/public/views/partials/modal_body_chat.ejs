@@ -19,5 +19,6 @@
 <script src="vendor/socket.io/socket.io.js"></script>
 <script src="js/chatTemplate.js"></script>
 <script>
-iniciaChat('<%= usuario.nome %>');
+    
+iniciaChat('<%=encodeURIComponent(JSON.stringify(usuario))%>');
 </script>

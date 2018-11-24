@@ -63,7 +63,7 @@ var AdministradorController = (function () {
     };
     ;
     AdministradorController.prototype.login = function (req, res, user) {
-        this.postgres.query('select nome,id,ativado from administrador where email = $1 and senha = md5($2)', [user.email, user.senha], function (err, results) {
+        this.postgres.query('select nome,id,ativado,email from administrador where email = $1 and senha = md5($2)', [user.email, user.senha], function (err, results) {
             if (!err) {
                 if (results.rows && results.rows.length > 0) {
                     if (results.rows[0].ativado == 1) {
