@@ -69,7 +69,7 @@ var AdministradorController = (function () {
                     if (results.rows[0].ativado == 1) {
                         req.session.user = results.rows[0];
                         req.session.isLogged = true;
-                        res.send(JSON.stringify({ "OK": results.rows[0].id }));
+                        res.send(JSON.stringify({ "OK": results.rows[0] }));
                     }
                     else {
                         res.send(JSON.stringify({ "OK": "desatived" }));
