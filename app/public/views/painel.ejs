@@ -53,6 +53,22 @@
       </div>
     </aside>
     <aside role="complementary">
+        <div class="modal fade" id="chatModal">
+          <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+  
+               <!-- Modal body -->
+               <% include ./partials/modal_body_chat.ejs %>
+  
+              <!-- Modal footer -->
+              <div class="modal-footer" role="complementary">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </aside>
+    <aside role="complementary">
       <div class="modal fade" id="tarefaModal">
         <div class="modal-dialog modal-lg">
           <div class="modal-content">
@@ -60,7 +76,7 @@
             <!-- Modal Header -->
             <% include ./partials/modal_header.ejs %>
             <!-- Modal body -->
-            <% include ./partials/modal_body_adm.ejs %>
+            <% include ./partials/modal_body_tarefas.ejs %>
 
             <!-- Modal footer -->
             <div class="modal-footer" role="complementary">

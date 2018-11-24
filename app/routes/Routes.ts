@@ -42,29 +42,20 @@ export default class Routes {
         );
     }
     
-    private criarRotas(rota: any, callback: any, method: string) {
-        if (method == 'get')
-            this._router.get(rota, callback);
-        else if (method == 'put') {
-            this._router.put(rota, callback);
-        } else 
-            this._router.post(rota, callback);
-        this._express.use(rota, this._router);
-    }
-
     private rotas() {
-        this.criarRotas(IndexRoute.updateRota(), IndexRoute.index, 'get');
-        this.criarRotas(IndexRoute.updateRota('/index'), IndexRoute.index, 'get');
-        this.criarRotas(IndexRoute.updateRota('/sair'), IndexRoute.logout, 'get');
-        this.criarRotas(IndexRoute.updateRota('/session/:id'), IndexRoute.session, 'get');
-        this.criarRotas(IndexRoute.updateRota('/clientes'), IndexRoute.clientes, 'get');
-        this.criarRotas(IndexRoute.updateRota('/painel'), IndexRoute.painel, 'get');
-        this.criarRotas(IndexRoute.updateRota('/charts'), IndexRoute.charts, 'get');
-        this.criarRotas(LoginRoute.updateRota('/login/:user'), LoginRoute.login, 'get');
-        this.criarRotas(LoginRoute.updateRota('/confirmar/:id'), LoginRoute.confirmLogin, 'get');
-        this.criarRotas(RegisterRoute.updateRota('/valida/clients/:client'), RegisterRoute.validaClient, 'post');
-        this.criarRotas(RegisterRoute.updateRota('/verifica/:form'), RegisterRoute.verificaForm, 'get');
-        this.criarRotas(RegisterRoute.updateRota('/ativar'), RegisterRoute.ativar, 'post');
+        this._router.get("/", IndexRoute.index);
+        this._router.get('/index', IndexRoute.index);
+        this._router.get('/sair', IndexRoute.logout);
+        this._router.get('/session/:id', IndexRoute.session);
+        this._router.get('/clientes', IndexRoute.clientes);
+        this._router.get('/painel', IndexRoute.painel);
+        this._router.get('/charts', IndexRoute.charts);
+        this._router.get('/login/:user', LoginRoute.login);
+        this._router.get('/confirmar/:id', LoginRoute.confirmLogin);
+        this._router.post('/valida/clients/:client', RegisterRoute.validaClient);
+        this._router.get('/verifica/:form', RegisterRoute.verificaForm);
+        this._router.post('/ativar', RegisterRoute.ativar);
+        this._express.use('/', this._router);
     }
     
 

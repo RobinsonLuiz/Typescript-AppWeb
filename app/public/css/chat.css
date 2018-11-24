@@ -1,0 +1,140 @@
+@import url(http://fonts.googleapis.com/css?family=Lato:100,300,400,700);
+@import url(http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css);
+
+html, body {
+    background: #e5e5e5;
+    font-family: 'Lato', sans-serif;
+    margin: 0px auto;
+    height:100%;
+}
+::selection{
+  background: #F36C44;
+  color: #FFF;
+}
+input { outline: none; }
+
+a{
+  color: rgba(82,179,217,0.9);
+}
+
+
+.menu {
+    background: rgb(238, 137, 108);
+    height: 60px;
+    z-index: 100rgb(5, 2, 1)
+}
+
+.name {
+    font-size: 30px;
+    margin-left: 10px;
+    color: rgba(255, 255, 255, 0.98);
+    top: 3px;
+}
+
+.last {
+    font-size: 15px;
+    margin-left: 10px;
+    color: rgba(255, 255, 255, 0.98); 
+    top: 30px;
+}
+
+
+/* Msgs */
+
+.chat {
+    overflow-y: auto; 
+    height:500px;
+}
+
+.chat li {
+    padding: 0.5rem;
+    overflow: hidden;
+    display: flex;
+}
+
+.other .msg {
+    order: 1;
+    border-top-left-radius: 0px;
+    box-shadow: -1px 2px 0px #D4D4D4;
+}
+
+.other:before {
+    content: "";
+    position: relative;
+    top: 0px;
+    right: 0px;
+    left: 40px;
+    width: 0px;
+    height: 0px;
+    border: 5px solid #fff;
+    border-left-color: transparent;
+    border-bottom-color: transparent;
+}
+
+.self {
+    justify-content: flex-end;
+    align-items: flex-end;
+}
+
+
+.self .msg {
+    order: 1;
+    border-bottom-right-radius: 0px;
+    box-shadow: 1px 2px 0px #D4D4D4;
+}
+
+
+.msg span {
+	font-size: 0.7rem;
+    color: #969898;
+}
+
+
+.msg {
+    background: white;
+    min-width: 50px;
+    padding: 10px;
+    border-radius: 2px;
+    box-shadow: 0px 2px 0px rgba(0, 0, 0, 0.07);
+}
+
+.msg p {
+    font-size: 0.8rem;
+    margin: 0 0 0.2rem 0;
+    color: #777;
+}
+
+.info {
+	color:#FFF;
+	background:#A2A4A4;
+}
+
+.msg time {
+    font-size: 0.7rem;
+    color: #ccc;
+    margin-top: 3px;
+    float: right;
+    cursor: default;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+}
+
+.msg time:before{
+    content:"\f017";
+    color: #ddd;
+    font-family: FontAwesome;
+    display: inline-block;
+    margin-right: 4px;
+}
+
+/* typping */
+
+input.textarea {
+    background: transparent;
+    border: 0.5px solid rgb(133, 133, 133);
+    outline: none;
+    color: #666;
+    font-weight: 400;
+}

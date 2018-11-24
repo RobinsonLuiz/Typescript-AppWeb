@@ -50,6 +50,7 @@ var AdministradorController = (function () {
                         res.send({ register: false });
                 });
             }
+            ;
         });
     };
     AdministradorController.prototype.update = function (req, res) {
@@ -57,10 +58,38 @@ var AdministradorController = (function () {
             if (!err)
                 res.render("index", { usuario: false });
             else
-                res.status(404).end();
+                res.status(404).json("Ocorreu um erro no update");
         });
     };
     ;
+    AdministradorController.prototype.login = function (req, res, user) {
+        this.postgres.query('select nome,id,ativado from administrador where email = $1 and senha = md5($2)', [user.email, user.senha], function (err, results) {
+            if (!err) {
+                if (results.rows && results.rows.length > 0) {
+                    if (results.rows[0].ativado == 1) {
+                        req.session.user = results.rows[0];
+                        req.session.isLogged = true;
+                        res.send(JSON.stringify({ "OK": results.rows[0].id }));
+                    }
+                    else {
+                        res.send(JSON.stringify({ "OK": "desatived" }));
+                    }
+                }
+                else
+                    res.send(JSON.stringify({ "OK": false }));
+            }
+            else
+                res.send(JSON.stringify({ "OK": "errorBank" }));
+        });
+    };
+    AdministradorController.prototype.confirmLogin = function (req, res) {
+        this.postgres.query("select email,id from administrador where token = $1 and token != ''", [String(req.params.id)], function (err, results) {
+            if (!err && results.rows.length > 0)
+                res.render('confirmar', { usuario: results.rows[0] });
+            else
+                res.status(404).json("Você já confirmou sua conta ou o código de acesso não existe");
+        });
+    };
     return AdministradorController;
 }());
 exports.default = new AdministradorController();

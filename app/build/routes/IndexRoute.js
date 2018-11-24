@@ -36,6 +36,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var connectionFactory_1 = require("../config/connectionFactory");
+var ClienteController_1 = require("../controller/ClienteController");
 var IndexRoute = (function () {
     function IndexRoute() {
         this._postgres = connectionFactory_1.default.pool;
@@ -47,10 +48,6 @@ var IndexRoute = (function () {
         enumerable: true,
         configurable: true
     });
-    IndexRoute.prototype.updateRota = function (route) {
-        if (route === void 0) { route = '/'; }
-        return route;
-    };
     Object.defineProperty(IndexRoute.prototype, "index", {
         get: function () {
             return function (req, res) {
@@ -90,18 +87,8 @@ var IndexRoute = (function () {
     });
     Object.defineProperty(IndexRoute.prototype, "clientes", {
         get: function () {
-            var _this = this;
             return function (req, res) {
-                if (req.session.user) {
-                    _this.resolveRequestBank("select * from cliente where id_adm = $1", req.session.user.id).then(function (result) {
-                        result['rows'].forEach(function (client) {
-                            client.ultimoacesso = _this.inverterData(client.ultimoacesso.toISOString().split('T')[0]);
-                        });
-                        res.render('clientes', { clientes_table: result['rows'], clientes: req.session.user.clientes != undefined ? req.session.user.clientes : '' });
-                    });
-                }
-                else
-                    res.render("403");
+                ClienteController_1.default.getClientes(req, res);
             };
         },
         enumerable: true,
@@ -111,30 +98,8 @@ var IndexRoute = (function () {
         get: function () {
             var _this = this;
             return function (req, res) { return __awaiter(_this, void 0, void 0, function () {
-                var promise1, promise2, promise3;
                 return __generator(this, function (_a) {
-                    if (req.session.user) {
-                        promise1 = this.resolveRequestBank("select * from administrador where id = $1", req.session.user.id);
-                        promise2 = this.resolveRequestBank("select count(id) as mensagens from mensagens where id_usuario_recebe = $1 and lida = true", req.session.user.id);
-                        promise3 = this.resolveRequestBank("select * from cliente where id_adm = $1", req.session.user.id);
-                        Promise.all([promise1, promise2, promise3]).then(function (data) {
-                            var clients = '';
-                            data[2]['rows'].forEach(function (client) {
-                                clients += client.nome + ",";
-                            });
-                            req.session.user.clientes = clients;
-                            clients = '';
-                            res.render('painel', { usuario: req.session.user, mensagens: data[1]['rows'][0].mensagens, clientes: req.session.user.clientes != undefined ? req.session.user.clientes : '', tarefas: false, desafios: false });
-                        }).catch(function (error) {
-                            if (req.session.user)
-                                res.redirect('painel');
-                            else
-                                res.redirect('index');
-                        });
-                    }
-                    else {
-                        res.render("403");
-                    }
+                    ClienteController_1.default.painel(req, res);
                     return [2];
                 });
             }); };
@@ -142,21 +107,11 @@ var IndexRoute = (function () {
         enumerable: true,
         configurable: true
     });
-    IndexRoute.prototype.resolveRequestBank = function (query, params) {
-        return __awaiter(this, void 0, void 0, function () {
-            var _this = this;
-            return __generator(this, function (_a) {
-                return [2, new Promise(function (resolve, reject) {
-                        resolve(_this.postgres.query(query, [params]));
-                    })];
-            });
-        });
-    };
     Object.defineProperty(IndexRoute.prototype, "charts", {
         get: function () {
             return function (req, res) {
                 if (req.session.user) {
-                    res.render('charts', { usuario: req.session.user, clientes: req.session.user.clientes != undefined ? req.session.user.clientes : '' });
+                    res.render('charts', { usuario: req.session.user, clientes_tarefas: req.session.clientes_tarefas ? req.session.clientes_tarefas : '', clientes: req.session.user.clientes != undefined ? req.session.user.clientes : '' });
                 }
                 else
                     res.render("403");
@@ -165,10 +120,6 @@ var IndexRoute = (function () {
         enumerable: true,
         configurable: true
     });
-    IndexRoute.prototype.inverterData = function (date) {
-        var data = date.split('-');
-        return data[2] + "/" + data[1] + "/" + data[0];
-    };
     return IndexRoute;
 }());
 exports.default = new IndexRoute();

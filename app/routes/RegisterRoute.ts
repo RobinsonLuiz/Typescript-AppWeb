@@ -9,9 +9,6 @@ class RegisterRoute {
 
     constructor() {}
 
-    updateRota(route) {
-        return route;
-    }
 
     get ativar() {
         return (req , res) => {

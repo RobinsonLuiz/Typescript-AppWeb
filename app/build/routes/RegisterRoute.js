@@ -6,9 +6,6 @@ var ClienteController_1 = require("../controller/ClienteController");
 var RegisterRoute = (function () {
     function RegisterRoute() {
     }
-    RegisterRoute.prototype.updateRota = function (route) {
-        return route;
-    };
     Object.defineProperty(RegisterRoute.prototype, "ativar", {
         get: function () {
             return function (req, res) {

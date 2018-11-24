@@ -1,0 +1,32 @@
+<div class="modal-body">
+    <div>
+        <div class="form-group">
+            <legend>
+                <label for="nomeTarefa">Nome da tarefa:</label>
+            </legend>
+            <input type="text" id="nomeTarefa" name="nomeTarefa" class="color-btn control" placeholder="Digite seu nome">
+        </div>
+        <div class="form-group">
+            <legend>
+                <label for="tipoTarefa">Tipo de tarefa:</label>
+            </legend>
+            <select class="form-control" id="tipoTarefa" name="tipoTarefa">
+                <option> Simples </option>
+                <option> Complexa </option>
+            </select>
+        </div>
+        <div class="form-group">
+            <legend>
+                <label for="tipoTarefa">Selecione o cliente:</label>
+            </legend>
+            <select class="form-control" id="clienteSeleciona" name="clienteSeleciona">
+                <%for(var i = 0;i<clientes_tarefas.length;i++) {%>
+                    <option> <%=clientes_tarefas[i].nome%> </option>
+                <%}%>
+            </select>
+        </div>
+        <div class="register-btn">
+            <button type="submit" class="btn btn-primary btn-xl btn-tarefa" id="register">Cadastrar</button>
+        </div>
+    </div>
+</div>

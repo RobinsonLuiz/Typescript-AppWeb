@@ -18,6 +18,10 @@
     background-color: #00e673;
 }
 
+.chat-online:hover {
+    cursor: pointer;
+}
+
 .success-active {
     background-color: dodgerblue;
 }

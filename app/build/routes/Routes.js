@@ -33,29 +33,20 @@ var Routes = (function () {
             saveUninitialized: true
         }));
     };
-    Routes.prototype.criarRotas = function (rota, callback, method) {
-        if (method == 'get')
-            this._router.get(rota, callback);
-        else if (method == 'put') {
-            this._router.put(rota, callback);
-        }
-        else
-            this._router.post(rota, callback);
-        this._express.use(rota, this._router);
-    };
     Routes.prototype.rotas = function () {
-        this.criarRotas(IndexRoute_1.default.updateRota(), IndexRoute_1.default.index, 'get');
-        this.criarRotas(IndexRoute_1.default.updateRota('/index'), IndexRoute_1.default.index, 'get');
-        this.criarRotas(IndexRoute_1.default.updateRota('/sair'), IndexRoute_1.default.logout, 'get');
-        this.criarRotas(IndexRoute_1.default.updateRota('/session/:id'), IndexRoute_1.default.session, 'get');
-        this.criarRotas(IndexRoute_1.default.updateRota('/clientes'), IndexRoute_1.default.clientes, 'get');
-        this.criarRotas(IndexRoute_1.default.updateRota('/painel'), IndexRoute_1.default.painel, 'get');
-        this.criarRotas(IndexRoute_1.default.updateRota('/charts'), IndexRoute_1.default.charts, 'get');
-        this.criarRotas(LoginRoute_1.default.updateRota('/login/:user'), LoginRoute_1.default.login, 'get');
-        this.criarRotas(LoginRoute_1.default.updateRota('/confirmar/:id'), LoginRoute_1.default.confirmLogin, 'get');
-        this.criarRotas(RegisterRoute_1.default.updateRota('/valida/clients/:client'), RegisterRoute_1.default.validaClient, 'post');
-        this.criarRotas(RegisterRoute_1.default.updateRota('/verifica/:form'), RegisterRoute_1.default.verificaForm, 'get');
-        this.criarRotas(RegisterRoute_1.default.updateRota('/ativar'), RegisterRoute_1.default.ativar, 'post');
+        this._router.get("/", IndexRoute_1.default.index);
+        this._router.get('/index', IndexRoute_1.default.index);
+        this._router.get('/sair', IndexRoute_1.default.logout);
+        this._router.get('/session/:id', IndexRoute_1.default.session);
+        this._router.get('/clientes', IndexRoute_1.default.clientes);
+        this._router.get('/painel', IndexRoute_1.default.painel);
+        this._router.get('/charts', IndexRoute_1.default.charts);
+        this._router.get('/login/:user', LoginRoute_1.default.login);
+        this._router.get('/confirmar/:id', LoginRoute_1.default.confirmLogin);
+        this._router.post('/valida/clients/:client', RegisterRoute_1.default.validaClient);
+        this._router.get('/verifica/:form', RegisterRoute_1.default.verificaForm);
+        this._router.post('/ativar', RegisterRoute_1.default.ativar);
+        this._express.use('/', this._router);
     };
     Object.defineProperty(Routes.prototype, "express", {
         get: function () {

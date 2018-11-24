@@ -1,4 +1,3 @@
-import Administrador from "./Administrador";
 
 class Cliente {
     private _nome: string;
