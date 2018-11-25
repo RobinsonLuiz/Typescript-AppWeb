@@ -34,12 +34,9 @@ function iniciaChat(usuario) {
 
 	socket.on("update", function (msg) {
 		$('.user-online').html(msg);
-		$('.user-online').removeAttr('hidden');
-		$('.user-online').fadeIn();
-		setTimeout(() => {
-			$('.user-online').fadeOut();
-			$('.user-online').attr('hidden', 'hidden');
-		}, 5000);
+		$('.user-online').fadeIn(2000);
+		$('.user-online').fadeOut(2000);
+		// $('.user-online').attr('hidden', 'hidden');
 		document.querySelector(".chat").scrollTop = document.querySelector(".chat").scrollHeight
 	});
 

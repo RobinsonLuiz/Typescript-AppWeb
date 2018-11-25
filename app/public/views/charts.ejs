@@ -28,142 +28,160 @@
     <% include ./partials/ul_admin.ejs %>
 
     <div id="content-wrapper">
-
       <div class="container-fluid">
-
-        <!-- Breadcrumbs-->
-        <ol class="breadcrumb">
-          <li class="breadcrumb-item">
-            <a href="painel">Página inicial</a>
-          </li>
-          <li class="breadcrumb-item active">Dashboard's</li>
-        </ol>
-
-        <!-- Area Chart Example-->
-        <div class="card mb-3">
-          <div class="card-header">
-            <i class="fas fa-chart-area"></i>
-            Exemplo de dashboard de Área</div>
-          <div class="card-body">
-            <canvas id="myAreaChart" width="100%" height="30"></canvas>
-          </div>
-          <div class="card-footer small text-muted">Última atualização ...</div>
+        <div class="alert alert-primary user-online">
         </div>
+          <div class="container-fluid">
 
-        <div class="row">
-          <div class="col-lg-8">
+            <!-- Breadcrumbs-->
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item">
+                <a href="painel">Página inicial</a>
+              </li>
+              <li class="breadcrumb-item active">Dashboard's</li>
+            </ol>
+
+            <!-- Area Chart Example-->
             <div class="card mb-3">
               <div class="card-header">
-                <i class="fas fa-chart-bar"></i>
-                Exemplo de dashboard de barras</div>
+                <i class="fas fa-chart-area"></i>
+                Exemplo de dashboard de Área</div>
               <div class="card-body">
-                <canvas id="myBarChart" width="100%" height="50"></canvas>
+                <canvas id="myAreaChart" width="100%" height="30"></canvas>
               </div>
               <div class="card-footer small text-muted">Última atualização ...</div>
             </div>
-          </div>
-          <div class="col-lg-4">
-            <div class="card mb-3">
-              <div class="card-header">
-                <i class="fas fa-chart-pie"></i>
-                Exemplo de dashboard de pizza</div>
-              <div class="card-body">
-                <canvas id="myPieChart" width="100%" height="100"></canvas>
+
+            <div class="row">
+              <div class="col-lg-8">
+                <div class="card mb-3">
+                  <div class="card-header">
+                    <i class="fas fa-chart-bar"></i>
+                    Exemplo de dashboard de barras</div>
+                  <div class="card-body">
+                    <canvas id="myBarChart" width="100%" height="50"></canvas>
+                  </div>
+                  <div class="card-footer small text-muted">Última atualização ...</div>
+                </div>
               </div>
-              <div class="card-footer small text-muted">Última atualização ...</div>
+              <div class="col-lg-4">
+                <div class="card mb-3">
+                  <div class="card-header">
+                    <i class="fas fa-chart-pie"></i>
+                    Exemplo de dashboard de pizza</div>
+                  <div class="card-body">
+                    <canvas id="myPieChart" width="100%" height="100"></canvas>
+                  </div>
+                  <div class="card-footer small text-muted">Última atualização ...</div>
+                </div>
+              </div>
+            </div>
+
+            <p class="small text-center text-muted my-5">
+              <em>Mais charts em breve...</em>
+            </p>
+
+          </div>
+          <!-- /.container-fluid -->
+
+          <!-- Sticky Footer -->
+          <footer class="sticky-footer">
+            <div class="container my-auto">
+              <div class="copyright text-center my-auto">
+                <span>Copyright © Task Control 2018</span>
+              </div>
+            </div>
+          </footer>
+
+        </div>
+        <!-- /.content-wrapper -->
+
+      </div>
+      <!-- /#wrapper -->
+      <aside role="complementary">
+        <div class="modal fade" id="myModal">
+          <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+
+              <!-- Modal Header -->
+              <% include ./partials/modal_header.ejs %>
+              <!-- Modal body -->
+              <% include ./partials/modal_body_adm.ejs %>
+
+              <!-- Modal footer -->
+              <div class="modal-footer" role="complementary">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+              </div>
             </div>
           </div>
         </div>
+      </aside>
+      <aside role="complementary">
+        <div class="modal fade" id="tarefaModal">
+          <div class="modal-dialog modal-lg">
+            <div class="modal-content">
 
-        <p class="small text-center text-muted my-5">
-          <em>Mais charts em breve...</em>
-        </p>
+              <!-- Modal Header -->
+              <% include ./partials/modal_header.ejs %>
+              <!-- Modal body -->
+              <% include ./partials/modal_body_tarefas.ejs %>
 
-      </div>
-      <!-- /.container-fluid -->
 
-      <!-- Sticky Footer -->
-      <footer class="sticky-footer">
-        <div class="container my-auto">
-          <div class="copyright text-center my-auto">
-            <span>Copyright © Task Control 2018</span>
+              <!-- Modal footer -->
+              <div class="modal-footer" role="complementary">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+              </div>
+            </div>
           </div>
         </div>
-      </footer>
+      </aside>
+      <aside role="complementary">
+        <div class="modal fade" id="chatModal">
+          <div class="modal-dialog modal-lg">
+            <div class="modal-content">
 
-    </div>
-    <!-- /.content-wrapper -->
+              <!-- Modal body -->
+              <% include ./partials/modal_body_chat.ejs %>
 
-  </div>
-  <!-- /#wrapper -->
-  <aside role="complementary">
-    <div class="modal fade" id="myModal">
-      <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-
-          <!-- Modal Header -->
-          <% include ./partials/modal_header.ejs %>
-          <!-- Modal body -->
-          <% include ./partials/modal_body_adm.ejs %>
-
-          <!-- Modal footer -->
-          <div class="modal-footer" role="complementary">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+              <!-- Modal footer -->
+              <div class="modal-footer" role="complementary">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
-    </div>
-  </aside>
-  <aside role="complementary">
-    <div class="modal fade" id="tarefaModal">
-      <div class="modal-dialog modal-lg">
-        <div class="modal-content">
+      </aside>
+      <!-- Scroll to Top Button-->
+      <a class="scroll-to-top rounded" href="#page-top">
+        <i class="fas fa-angle-up"></i>
+      </a>
 
-          <!-- Modal Header -->
-          <% include ./partials/modal_header.ejs %>
-          <!-- Modal body -->
-          <% include ./partials/modal_body_tarefas.ejs %>
+      <!-- Logout Modal-->
+      <% include ./partials/logout_modal.ejs %>
 
+      <!-- Bootstrap core JavaScript-->
+      <script src="vendor/jquery/jquery.min.js"></script>
+      <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-          <!-- Modal footer -->
-          <div class="modal-footer" role="complementary">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
-          </div>
-        </div>
-      </div>
-    </div>
-  </aside>
-  <!-- Scroll to Top Button-->
-  <a class="scroll-to-top rounded" href="#page-top">
-    <i class="fas fa-angle-up"></i>
-  </a>
+      <!-- Core plugin JavaScript-->
+      <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
 
-  <!-- Logout Modal-->
-  <% include ./partials/logout_modal.ejs %>
+      <!-- Page level plugin JavaScript-->
+      <script src="vendor/chart.js/Chart.min.js"></script>
 
-  <!-- Bootstrap core JavaScript-->
-  <script src="vendor/jquery/jquery.min.js"></script>
-  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+      <!-- Custom scripts for all pages-->
+      <script src="js/sb-admin.min.js"></script>
 
-  <!-- Core plugin JavaScript-->
-  <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
-
-  <!-- Page level plugin JavaScript-->
-  <script src="vendor/chart.js/Chart.min.js"></script>
-
-  <!-- Custom scripts for all pages-->
-  <script src="js/sb-admin.min.js"></script>
-
-  <!-- Demo scripts for this page-->
-  <script src="js/demo/chart-area-demo.js"></script>
-  <script src="js/demo/chart-bar-demo.js"></script>
-  <script src="js/demo/chart-pie-demo.js"></script>
-  <script src="js/autocomplete.js"></script>
-  <script src="js/client.js"></script>
-  <script>
-    let envios = '<%=clientes%>';
-    autocomplete(document.getElementById("myInput"), envios.split(','));
-  </script>
+      <!-- Demo scripts for this page-->
+      <script src="js/demo/chart-area-demo.js"></script>
+      <script src="js/demo/chart-bar-demo.js"></script>
+      <script src="js/demo/chart-pie-demo.js"></script>
+      <script src="js/autocomplete.js"></script>
+      <script src="js/client.js"></script>
+      <script>
+        let envios = '<%=clientes%>';
+        autocomplete(document.getElementById("myInput"), envios.split(','));
+      </script>
 </body>
 
 </html>

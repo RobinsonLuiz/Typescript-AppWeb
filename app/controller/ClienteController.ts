@@ -56,7 +56,7 @@ class ClienteController {
                 result['rows'].forEach(client => {
                     client.ultimoacesso = this.inverterData(client.ultimoacesso.toISOString().split('T')[0]);
                 });
-                res.render('clientes', {clientes_table:  result['rows'], clientes_tarefas: req.session.clientes_tarefas ? req.session.clientes_tarefas : '', clientes: req.session.user.clientes != undefined ? req.session.user.clientes : ''});
+                res.render('clientes', {usuario: req.session.user, clientes_table:  result['rows'], clientes_tarefas: req.session.clientes_tarefas ? req.session.clientes_tarefas : '', clientes: req.session.user.clientes != undefined ? req.session.user.clientes : ''});
             });
         } else res.render("403");
     }
