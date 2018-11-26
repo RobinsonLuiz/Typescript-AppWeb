@@ -19,15 +19,15 @@ class IndexRoute {
             const hour = 3000000
             req.session.cookie.expires = new Date(Date.now() + hour);
             req.session.cookie.maxAge = hour;
-            if (req.session.user) res.redirect('painel');
-            else res.render('index', {success: false, usuario: false});
+            if (req.session.administrador) res.redirect('painel');
+            else res.render('index', {success: false, administrador: false});
         }
     }
 
     get logout(): object {
         return (req, res) => {
-            req.session.user = undefined;
-            req.session.clientes = undefined;
+            req.session.administrador = undefined;
+            req.session.administradorClientes = undefined;
             res.redirect('/');
         }
     }
@@ -54,8 +54,8 @@ class IndexRoute {
 
     get charts(): object {
         return (req, res) => {
-            if (req.session.user) {
-                res.render('charts', {usuario: req.session.user, clientes_tarefas: req.session.clientes_tarefas ? req.session.clientes_tarefas : '', clientes: req.session.user.clientes != undefined ? req.session.user.clientes : ''});
+            if (req.session.administrador) {
+                res.render('charts', {administrador: req.session.administrador, clientes_tarefas: req.session.clientes_tarefas ? req.session.clientes_tarefas : '', clientes: req.session.administrador.administradorClientes != undefined ? req.session.administrador.administradorClientes : ''});
             } else res.render("403");
         }
     }

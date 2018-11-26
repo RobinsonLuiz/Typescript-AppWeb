@@ -1,5 +1,5 @@
 
-function index(domError, domSuccess, domBankError, campos, route, modal, domActive=null) {
+function index(domError, domSuccess, domBankError, campos, route, modal, domActive=null, method='GET') {
     var http = new XMLHttpRequest();
     http.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
@@ -65,7 +65,7 @@ function index(domError, domSuccess, domBankError, campos, route, modal, domActi
             };
         };
     };
-    http.open("GET", route + JSON.stringify(campos) , true);
+    http.open(method, route + JSON.stringify(campos) , true);
     http.send();
 }
 
@@ -78,5 +78,5 @@ btn_register.addEventListener('click', function(event) {
 
 btn_login.addEventListener('click', function(event) {
     event.preventDefault();
-    index('.error-login', '.success-login', '.bankerror', pegaCamposLogin(), 'login/', '#loginModal', '.success-active');
+    index('.error-login', '.success-login', '.bankerror', pegaCamposLogin(), 'login/', '#loginModal', '.success-active', 'POST');
 });

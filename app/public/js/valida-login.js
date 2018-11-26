@@ -7,14 +7,19 @@ login.addEventListener('click', async function() {
                 let btn_login = document.querySelector('.btn-modal-login');
                 let email_login = validaEmail('emailLogin');
                 let senha_login = validaSenha();
-                if (email_login && senha_login) btn_login.removeAttribute('disabled');
+                let captcha = validaCaptcha();
+                if (email_login && senha_login && captcha) btn_login.removeAttribute('disabled');
                 else btn_login.setAttribute('disabled', 'disabled');
             } else {
                 limparCamposLogin();
             }
         }, 800);
     }, 150);
-})
+});
+
+function validaCaptcha() {
+    return document.querySelector('#g-recaptcha-response').value.length > 0;
+}
 
 function limparCamposLogin() {
     let campos = [
@@ -53,7 +58,8 @@ function validaSenha() {
 function pegaCamposLogin() {
     return {
         "email": document.querySelector("#emailLogin").value,
-        "senha": document.querySelector("#password").value
+        "senha": document.querySelector("#password").value,
+        "captcha": document.querySelector("#g-recaptcha-response").value
     }
 }
 

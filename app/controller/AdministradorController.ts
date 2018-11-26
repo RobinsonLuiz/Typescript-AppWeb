@@ -49,7 +49,7 @@ class AdministradorController {
 
     public update(req, res) {
         this.postgres.query("update administrador set senha = md5($1), token = '', ativado = 1 where id = $2", [req.body.senha, req.body.id], function(err, results) {
-            if (!err) res.render("index", {usuario: false});
+            if (!err) res.render("index", {administrador: false});
             else res.status(404).json("Ocorreu um erro no update");
         });
     };
@@ -59,8 +59,7 @@ class AdministradorController {
             if (!err) {
                 if (results.rows && results.rows.length > 0) {
                     if (results.rows[0].ativado == 1) {
-                        req.session.user = results.rows[0];
-                        req.session.isLogged = true;
+                        req.session.administrador = results.rows[0];
                         res.send(JSON.stringify({"OK": results.rows[0]}));
                     } else {
                         res.send(JSON.stringify({"OK": "desatived"}));
@@ -72,7 +71,7 @@ class AdministradorController {
 
     public confirmLogin(req, res) {
         this.postgres.query("select email,id from administrador where token = $1 and token != ''", [String(req.params.id)], function(err, results) {
-            if(!err && results.rows.length > 0) res.render('confirmar', {usuario: results.rows[0]});
+            if(!err && results.rows.length > 0) res.render('confirmar', {administrador: results.rows[0]});
             else res.status(404).json("Você já confirmou sua conta ou o código de acesso não existe");
         });
     }

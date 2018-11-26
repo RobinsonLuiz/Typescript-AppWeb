@@ -2,8 +2,10 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 var connectionFactory_1 = require("../config/connectionFactory");
 var AdministradorController_1 = require("../controller/AdministradorController");
+var recaptcha = require("express-recaptcha");
 var LoginRoute = (function () {
     function LoginRoute() {
+        this._recaptcha = recaptcha.Recaptcha;
         this._postgres = connectionFactory_1.default.pool;
     }
     Object.defineProperty(LoginRoute.prototype, "postgres", {
@@ -17,7 +19,11 @@ var LoginRoute = (function () {
         get: function () {
             return function (req, res) {
                 var user = JSON.parse(req.params.user);
-                AdministradorController_1.default.login(req, res, user);
+                if (user.captcha.length > 0) {
+                    AdministradorController_1.default.login(req, res, user);
+                }
+                else
+                    res.status(403).json("Problemas internos");
             };
         },
         enumerable: true,

@@ -2,6 +2,7 @@ import * as express from 'express';
 import IndexRoute from './IndexRoute';
 import LoginRoute from './LoginRoute';
 import RegisterRoute from './RegisterRoute';
+import ClientRoute from './ClientRoute';
 import * as path from 'path';
 import * as session from 'express-session';
 import * as cookieParser from 'cookie-parser';
@@ -43,6 +44,8 @@ export default class Routes {
     }
     
     private rotas() {
+        this._router.get("/clientes/login", ClientRoute.login);
+        this._router.get('/clientes/index', ClientRoute.index);
         this._router.get("/", IndexRoute.index);
         this._router.get('/index', IndexRoute.index);
         this._router.get('/sair', IndexRoute.logout);
@@ -50,7 +53,7 @@ export default class Routes {
         this._router.get('/clientes', IndexRoute.clientes);
         this._router.get('/painel', IndexRoute.painel);
         this._router.get('/charts', IndexRoute.charts);
-        this._router.get('/login/:user', LoginRoute.login);
+        this._router.post('/login/:user', LoginRoute.login);
         this._router.get('/confirmar/:id', LoginRoute.confirmLogin);
         this._router.post('/valida/clients/:client', RegisterRoute.validaClient);
         this._router.get('/verifica/:form', RegisterRoute.verificaForm);

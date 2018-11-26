@@ -7,6 +7,7 @@ $(document).ready(function () {
             buttons: [
                 'excel'
             ],
+            "pageLength": 5,
             "oLanguage": {
                 "sProcessing": "Processando...",
                 "sLengthMenu": "Mostrar _MENU_ registros",
@@ -17,13 +18,14 @@ $(document).ready(function () {
                 "sInfoPostFix": "",
                 "sSearch": "Buscar:",
                 "sUrl": "",
+                "pageLength": 5,
                 "oPaginate": {
                     "sFirst": "Primeiro",
                     "sPrevious": "Anterior",
                     "sNext": "Seguinte",
                     "sLast": "Último"
                 }
-            },
+            }
     });
     document.querySelector('.dt-button').classList.add('btn');
     document.querySelector('.dt-button').classList.add('btn-primary');

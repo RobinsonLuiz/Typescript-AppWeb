@@ -4,6 +4,7 @@ var express = require("express");
 var IndexRoute_1 = require("./IndexRoute");
 var LoginRoute_1 = require("./LoginRoute");
 var RegisterRoute_1 = require("./RegisterRoute");
+var ClientRoute_1 = require("./ClientRoute");
 var path = require("path");
 var session = require("express-session");
 var cookieParser = require("cookie-parser");
@@ -34,6 +35,8 @@ var Routes = (function () {
         }));
     };
     Routes.prototype.rotas = function () {
+        this._router.get("/clientes/login", ClientRoute_1.default.login);
+        this._router.get('/clientes/index', ClientRoute_1.default.index);
         this._router.get("/", IndexRoute_1.default.index);
         this._router.get('/index', IndexRoute_1.default.index);
         this._router.get('/sair', IndexRoute_1.default.logout);
@@ -41,7 +44,7 @@ var Routes = (function () {
         this._router.get('/clientes', IndexRoute_1.default.clientes);
         this._router.get('/painel', IndexRoute_1.default.painel);
         this._router.get('/charts', IndexRoute_1.default.charts);
-        this._router.get('/login/:user', LoginRoute_1.default.login);
+        this._router.post('/login/:user', LoginRoute_1.default.login);
         this._router.get('/confirmar/:id', LoginRoute_1.default.confirmLogin);
         this._router.post('/valida/clients/:client', RegisterRoute_1.default.validaClient);
         this._router.get('/verifica/:form', RegisterRoute_1.default.verificaForm);

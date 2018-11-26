@@ -15,8 +15,9 @@ register_btns.forEach(register => {
                 }
             }, 1000)
         }, 100);
-    })
-})
+    });
+});
+
 function limparCampos() {
     let campos = [
         document.querySelector("#nome"),
