@@ -23,6 +23,7 @@
     "express-session": "^1.15.6",
     "google-translate-api": "^2.3.0",
     "lite-server": "^2.4.0",
+    "mysql": "^2.16.0",
     "nodemailer": "^4.6.8",
     "request": "^2.88.0",
     "requestretry": "^3.0.1",
