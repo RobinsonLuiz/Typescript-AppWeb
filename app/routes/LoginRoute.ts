@@ -18,9 +18,9 @@ class LoginRoute {
     get login() {
         return (req, res) => {
             let user = JSON.parse(req.params.user);
-            if (user.captcha.length > 0) {
-                AdministradorController.login(req, res, user);
-            } else res.status(403).json("Problemas internos");
+            // if (user.captcha.length > 0) {
+            // } else res.status(500).json("Problemas internos com o recaptcha");
+            AdministradorController.login(req, res, user);
         };
     }
 

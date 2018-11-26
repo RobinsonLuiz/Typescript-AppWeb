@@ -61,9 +61,9 @@ var ClienteController = (function () {
     ClienteController.prototype.insert = function (req, res, client) {
         var _this = this;
         var cliente = new Cliente_1.default(client.nome, client.email, new Date(), 'indefinido', uuidv1().split('-')[0], req.session.administrador.id);
-        this.postgres.query("select * from cliente where email = $1 and id_adm = $2", [cliente.email, req.session.administrador.id], function (err, doc) {
+        this.postgres.query("select * from cliente where email = ? and id_adm = ?", [cliente.email, req.session.administrador.id], function (err, doc) {
             if (!err) {
-                if (doc.rows.length > 0) {
+                if (doc.length > 0) {
                     res.send({ register: 'cadastrado' });
                 }
                 else {
@@ -73,7 +73,7 @@ var ClienteController = (function () {
                         from: "'Controle de Tarefas' <ecommerceTemp@gmail.com>",
                         to: cliente.email,
                         subject: "Confirmação de Cadastro",
-                        text: "Ol\u00E1 " + cliente.nome + ", voc\u00EA foi cadastrado no controle de tarefas, sua senha \u00E9 " + client.senha + "\n                        Desconsidere caso n\u00E3o tenha feito nenhum pedido para fazer parte do controle de tarefas"
+                        text: "Ol\u00E1 " + cliente.nome + ", voc\u00EA foi cadastrado no controle de tarefas, sua senha \u00E9 " + cliente.senha + "\n                        Desconsidere caso n\u00E3o tenha feito nenhum pedido para fazer parte do controle de tarefas"
                     };
                     _this.mailer.transporter.sendMail(opEmail, function (err, info) {
                         if (err)
@@ -81,13 +81,14 @@ var ClienteController = (function () {
                         else
                             console.log("Mensagem enviada com sucesso");
                     });
-                    var cliente_response = [cliente.nome, cliente.email, new Date(), 'indefinido', uuidv1().split('-')[0], req.session.administrador.id];
-                    _this.postgres.query("insert into cliente (nome,email,ultimoacesso,situacao,senha,id_adm) VALUES ($1,$2,$3,$4,md5($5),$6)", cliente_response, function (err, results) {
+                    var cliente_response = [cliente.nome, cliente.email, cliente.date, cliente.situacao, cliente.senha, req.session.administrador.id];
+                    _this.postgres.query("insert into cliente (nome, email, ultimoacesso, situacao, senha, id_adm) VALUES (?,?,?,?,?,?)", cliente_response, function (err, results) {
                         if (!err) {
                             res.send({ register: "ok" });
                         }
-                        else
+                        else {
                             res.send({ register: "error" });
+                        }
                     });
                 }
             }
@@ -95,14 +96,31 @@ var ClienteController = (function () {
                 res.send({ register: 'error' });
         });
     };
+    ClienteController.prototype.login = function (req, res, user) {
+        console.log(user.senha);
+        this.postgres.query('select * from cliente where email = ? and senha = ?', [user.email, user.senha], function (err, results) {
+            if (!err) {
+                if (results && results.length > 0) {
+                    req.session.cliente = results[0];
+                    res.send(JSON.stringify({ "OK": results[0] }));
+                }
+                else
+                    res.send(JSON.stringify({ "OK": false }));
+            }
+            else
+                res.send(JSON.stringify({ "OK": "errorBank" }));
+        });
+    };
     ClienteController.prototype.getClientes = function (req, res) {
         var _this = this;
         if (req.session.administrador) {
-            this.resolveRequestBank("select * from cliente where id_adm = $1", req.session.administrador.id).then(function (result) {
-                result['rows'].forEach(function (client) {
-                    client.ultimoacesso = _this.inverterData(client.ultimoacesso.toISOString().split('T')[0]);
-                });
-                res.render('clientes', { administrador: req.session.administrador, clientes_table: result['rows'], clientes_tarefas: req.session.clientes_tarefas ? req.session.clientes_tarefas : '', clientes: req.session.administrador.clientes != undefined ? req.session.administrador.clientes : '' });
+            this.resolveRequestBank("select * from cliente where id_adm = ?", req.session.administrador.id).then(function (result) {
+                if (result) {
+                    result.forEach(function (client) {
+                        client.ultimoacesso = _this.inverterData(client.ultimoacesso.toISOString().split('T')[0]);
+                    });
+                }
+                res.render('clientes', { administrador: req.session.administrador, clientes_table: result ? result : [], clientes_tarefas: req.session.clientes_tarefas ? req.session.clientes_tarefas : '', clientes: req.session.administrador.clientes != undefined ? req.session.administrador.clientes : '' });
             });
         }
         else
@@ -110,19 +128,22 @@ var ClienteController = (function () {
     };
     ClienteController.prototype.painel = function (req, res) {
         if (req.session.administrador) {
-            var promise1 = this.resolveRequestBank("select * from administrador where id = $1", req.session.administrador.id);
-            var promise2 = this.resolveRequestBank("select count(id) as mensagens from mensagens where id_usuario_recebe = $1 and lida = true", req.session.administrador.id);
-            var promise3 = this.resolveRequestBank("select * from cliente where id_adm = $1", req.session.administrador.id);
+            var promise1 = this.resolveRequestBank("select * from administrador where id = ?", req.session.administrador.id);
+            var promise2 = this.resolveRequestBank("select count(id) as mensagens from mensagens where id_usuario_recebe = ? and lida = false", req.session.administrador.id);
+            var promise3 = this.resolveRequestBank("select * from cliente where id_adm = ?", req.session.administrador.id);
             Promise.all([promise1, promise2, promise3]).then(function (data) {
                 var clients = '';
-                data[2]['rows'].forEach(function (client) {
-                    clients += client.nome + ",";
-                });
-                req.session.administrador.clientes = clients;
-                clients = '';
-                req.session.clientes_tarefas = data[2]['rows'];
-                res.render('painel', { administrador: req.session.administrador, mensagens: data[1]['rows'][0].mensagens, clientes_tarefas: req.session.clientes_tarefas ? req.session.clientes_tarefas : '', clientes: req.session.administrador.clientes != undefined ? req.session.administrador.clientes : '', tarefas: false, desafios: false });
+                if (data[2] && data[2].length > 0) {
+                    data[2].forEach(function (client) {
+                        clients += client.nome + ",";
+                    });
+                    req.session.administrador.clientes = clients;
+                    clients = '';
+                    req.session.clientes_tarefas = data[2];
+                }
+                res.render('painel', { administrador: req.session.administrador, mensagens: data[1][0].mensagens != 0 ? data[1][0].mensagens : 0, clientes_tarefas: req.session.clientes_tarefas ? req.session.clientes_tarefas : '', clientes: req.session.administrador.clientes != undefined ? req.session.administrador.clientes : '', tarefas: false, desafios: false });
             }).catch(function (error) {
+                console.log(error);
                 if (req.session.administrador)
                     res.redirect('painel');
                 else
@@ -142,7 +163,11 @@ var ClienteController = (function () {
             var _this = this;
             return __generator(this, function (_a) {
                 return [2, new Promise(function (resolve, reject) {
-                        resolve(_this.postgres.query(query, [params]));
+                        _this.postgres.query(query, [params], function (err, results) {
+                            if (err)
+                                return reject(err);
+                            return resolve(results);
+                        });
                     })];
             });
         });

@@ -19,11 +19,7 @@ var LoginRoute = (function () {
         get: function () {
             return function (req, res) {
                 var user = JSON.parse(req.params.user);
-                if (user.captcha.length > 0) {
-                    AdministradorController_1.default.login(req, res, user);
-                }
-                else
-                    res.status(403).json("Problemas internos");
+                AdministradorController_1.default.login(req, res, user);
             };
         },
         enumerable: true,

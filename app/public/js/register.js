@@ -1,5 +1,5 @@
 
-function index(domError, domSuccess, domBankError, campos, route, modal, domActive=null, method='GET') {
+function index(domError, domSuccess, domBankError, campos, route, modal, domActive=null, method='GET', routeSession=false) {
     var http = new XMLHttpRequest();
     http.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
@@ -29,7 +29,7 @@ function index(domError, domSuccess, domBankError, campos, route, modal, domActi
                                 bank.setAttribute('hidden', 'hidden');
                                 success_register.removeAttribute('hidden');
                                 setTimeout(() => {
-                                    window.location = "http://localhost/session/" + user.OK;
+                                    window.location = `http://localhost/${routeSession}` + user.OK;
                                     let success_register = document.querySelector(domSuccess);
                                     success_register.setAttribute('hidden','hidden');
                                     $(modal).modal('hide');
@@ -69,14 +69,22 @@ function index(domError, domSuccess, domBankError, campos, route, modal, domActi
     http.send();
 }
 
-var btn_register = document.querySelector('.btn-modal-register');
-var btn_login = document.querySelector('.btn-modal-login');
-btn_register.addEventListener('click', function(event) {
+var btnRegister = document.querySelector('.btn-modal-register');
+btnRegister.addEventListener('click', function(event) {
     event.preventDefault();
     index('.error', '.success', '.bankerror', pegaCampos(), 'verifica/', '#myModal');
 });
 
-btn_login.addEventListener('click', function(event) {
+var btnLogin = document.querySelector('.btn-modal-login');
+
+btnLogin.addEventListener('click', function(event) {
     event.preventDefault();
-    index('.error-login', '.success-login', '.bankerror', pegaCamposLogin(), 'login/', '#loginModal', '.success-active', 'POST');
+    index('.error-login', '.success-login', '.bankerror', pegaCamposLogin(), 'login/', '#loginModal', '.success-active', 'POST', 'administrador/session/');
+});
+
+var btnLoginClient = document.querySelector('.btn-modal-login-client');
+
+btnLoginClient.addEventListener('click', function(event) {
+    event.preventDefault();
+    index('.error-login-client', '.success-login-client', '.bankerror', pegaCamposLoginClient(), 'clientes/login/', '#areaClientModal', '.success-active', 'POST', 'clientes/session/');
 });

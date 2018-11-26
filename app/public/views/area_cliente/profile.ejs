@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" type="image/png" sizes="16x16" href="../plugins/images/favicon.png">
+    <title>Área do cliente - Profile</title>
+    <!-- Bootstrap Core CSS -->
+    <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Menu CSS -->
+    <link href="../plugins/bower_components/sidebar-nav/dist/sidebar-nav.min.css" rel="stylesheet">
+    <!-- toast CSS -->
+    <link href="../plugins/bower_components/toast-master/css/jquery.toast.css" rel="stylesheet">
+    <!-- animation CSS -->
+    <link href="../css/animate.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link href="../css/style.css" rel="stylesheet">
+    <!-- color CSS -->
+    <link href="../css/colors/default.css" id="theme" rel="stylesheet">
+    <!-- Custom fonts for this template-->
+    <link href="../vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+</head>
+
+<body class="fix-header">
+    <!-- ============================================================== -->
+    <!-- Preloader -->
+    <!-- ============================================================== -->
+    <div class="preloader">
+        <svg class="circular" viewBox="25 25 50 50">
+            <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10" />
+        </svg>
+    </div>
+    <div id="wrapper">
+        <nav class="navbar navbar-expand-lg navbar-dark" id="mainNav">
+            <div class="navbar-header">
+                <ul class="nav navbar-top-links navbar-right pull-right">
+                    <li class="nav-item dropdown no-arrow" id="navbarResponsive">
+                        <a class="profile-pic nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true"
+                            aria-expanded="false">
+                            <img src="https://scontent.fpoa8-1.fna.fbcdn.net/v/t1.0-9/11885187_1611454302439445_2886069983194007660_n.jpg?_nc_cat=111&_nc_ht=scontent.fpoa8-1.fna&oh=6c468a9b4a34e2da3ce6cfa75300dd57&oe=5C7230A6"
+                                alt="user-img" width="36" class="img-circle">
+                            <b>Robinson Luiz</b>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
+                            <a class="dropdown-item" href="#" style="background-color: white;color: black">Configurações</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="index" style="background-color: white;color: black">Inicio</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="profile" style="background-color: white;color: black">Profile</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal" style="background-color: white;color: black">Sair</a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        <div class="navbar-default sidebar" role="navigation">
+            <div class="sidebar-nav slimscrollsidebar">
+                <div class="sidebar-head">
+                    <h3>
+                        <span class="hide-menu">Controle de tarefas</span>
+                    </h3>
+                </div>
+                <ul class="nav" id="side-menu">
+                    <li style="padding: 70px 0 0;">
+                        <a href="index" class="waves-effect">
+                            <i class="fas fa-home" aria-hidden="true"></i> Inicio</a>
+                    </li>
+                    <li>
+                        <a href="profile" class="waves-effect">
+                            <i class="fa fa-user fa-fw" aria-hidden="true"></i>Profile</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div id="page-wrapper">
+            <div class="container-fluid">
+                <div class="row bg-title">
+                    <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+                        <h4 class="page-title">Página de perfil</h4>
+                    </div>
+                    <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
+                        <ol class="breadcrumb">
+                            <li class="active">Profile</li>
+                        </ol>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4 col-xs-12">
+                        <div class="white-box">
+                            <div class="user-bg">
+                                <img width="100%" alt="user" src="../plugins/images/large/img1.jpg">
+                                <div class="overlay-box">
+                                    <div class="user-content">
+                                        <a href="javascript:void(0)">
+                                            <img src="https://scontent.fpoa8-1.fna.fbcdn.net/v/t1.0-9/11885187_1611454302439445_2886069983194007660_n.jpg?_nc_cat=111&_nc_ht=scontent.fpoa8-1.fna&oh=6c468a9b4a34e2da3ce6cfa75300dd57&oe=5C7230A6"
+                                                class="thumb-lg img-circle" alt="img">
+                                        </a>
+                                        <h4 class="text-white">Robinson Luiz</h4>
+                                        <h5 class="text-white">robinsontads@outlook.com</h5>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="user-btm-box">
+                                <div class="col-md-4 col-sm-4 text-center">
+                                    <h3>1</h3>
+                                </div>
+                                <div class="col-md-4 col-sm-4 text-center">
+                                    <h3>2</h3>
+                                </div>
+                                <div class="col-md-4 col-sm-4 text-center">
+                                    <h3>4</h3>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-8 col-xs-12">
+                        <div class="white-box">
+                            <form class="form-horizontal form-material">
+                                <div class="form-group">
+                                    <label class="col-md-12">Nome Completo</label>
+                                    <div class="col-md-12">
+                                        <input type="text" placeholder="Example" class="form-control form-control-line"> </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="example-email" class="col-md-12">Email</label>
+                                    <div class="col-md-12">
+                                        <input type="email" placeholder="example@example.com" class="form-control form-control-line" name="example-email" id="example-email"> </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-12">Senha</label>
+                                    <div class="col-md-12">
+                                        <input type="password" value="password" class="form-control form-control-line"> </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-12">Número telefone</label>
+                                    <div class="col-md-12">
+                                        <input type="text" placeholder="123 456 7890" class="form-control form-control-line"> </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-12">Descrição</label>
+                                    <div class="col-md-12">
+                                        <textarea rows="5" class="form-control form-control-line"></textarea>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-12">Selecione seu estado</label>
+                                    <div class="col-sm-12">
+                                        <select class="form-control form-control-line">
+                                            <option>Rio Grande do Sul</option>
+                                            <option>Santa Catarina</option>
+                                            <option>São Paulo</option>
+                                            <option>Rio de Janeiro</option>
+                                            <option>Minas Gerais</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-sm-12">
+                                        <button class="btn btn-success">Atualizar perfil</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <footer class="footer text-center"> Copyright &copy; Task Control 2018 </footer>
+        </div>
+        <!-- Logout Modal-->
+        <% include ../partials/logout_modal_client.ejs %>
+    </div>
+    <script src="../vendor/jquery/jquery.min.js"></script>
+    <!-- Bootstrap Core JavaScript -->
+    <script src="../vendor/bootstrap/js/bootstrap.min.js"></script>
+    <!-- Menu Plugin JavaScript -->
+    <script src="../plugins/bower_components/sidebar-nav/dist/sidebar-nav.min.js"></script>
+    <!--slimscroll JavaScript -->
+    <script src="../js/jquery.slimscroll.js"></script>
+    <!--Wave Effects -->
+    <script src="../js/waves.js"></script>
+    <!-- Custom Theme JavaScript -->
+    <script src="../js/custom.min.js"></script>
+</body>
+
+</html>

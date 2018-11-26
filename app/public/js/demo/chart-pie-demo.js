@@ -9,7 +9,7 @@ var myPieChart = new Chart(ctx, {
   data: {
     labels: ["Neutro", "Bravo", "Contente", "Feliz"],
     datasets: [{
-      data: [12.21, 15.58, 11.25, 8.32],
+      data: Array.from({length: 4}, () => Math.floor(Math.random() * 7)),
       backgroundColor: ['#007bff', '#dc3545', '#ffc107', '#28a745'],
     }],
   },

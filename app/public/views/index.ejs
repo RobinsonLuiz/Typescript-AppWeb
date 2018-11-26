@@ -31,7 +31,7 @@
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ml-auto">
           <li class="nav-item">
-            <a class="nav-link register" data-toggle="modal" data-target="#areaClientModal" href="">Área do cliente</a>
+            <a class="nav-link area-client" data-toggle="modal" data-target="#areaClientModal" href="">Área do cliente</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#about">Sobre</a>
@@ -55,7 +55,7 @@
       <div class="row">
         <div class="col-lg-10 mx-auto">
           <h1 class="text-uppercase">
-            <strong>Controle de tarefas assistivas</strong>
+            <strong>Controle de tarefas</strong>
           </h1>
           <hr>
         </div>
@@ -189,22 +189,22 @@
             <h4 class="modal-title" role="heading">Área do cliente</h4>
             <button type="button" class="close" data-dismiss="modal">&times;</button>
           </div>
-          <div class="modal-header success-login" hidden>
+          <div class="modal-header success-login-client" hidden>
             <h4 class="modal-title" role="heading">Login Realizado com Sucesso!</h4>
-            <button type="button" class="close close-success-login" data-dismiss="success">&times;</button>
+            <button type="button" class="close close-success-login-client" data-dismiss="success">&times;</button>
           </div>
           <div class="modal-header success-active" hidden>
             <h4 class="modal-title" role="heading">Cadastro não ativado, por favor verifique seu email e ative seu
               cadastro!</h4>
             <button type="button" class="close close-active" data-dismiss="success">&times;</button>
           </div>
-          <div class="modal-header error-login" hidden>
+          <div class="modal-header error-login-client" hidden>
             <h4 class="modal-title" role="heading">Email e/ou senha errados!</h4>
-            <button type="button" class="close close-error-login" data-dismiss="error">&times;</button>
+            <button type="button" class="close close-error-login-client" data-dismiss="error">&times;</button>
           </div>
           <!-- Modal body -->
           <div class="modal-body">
-            <form action="/login">
+            <form action="/login" method="POST">
               <div class="form-group">
                 <legend>
                   <label for="email">Email:</label>
@@ -218,7 +218,7 @@
                 <input type="password" id="clientPassword" name="clientPassword" class="color-btn control" placeholder="Digite seu nome">
               </div>
               <div class="modal-footer" role="complementary">
-                <button type="submit" class="btn btn-primary btn-modal-login" id="clientLogin" disabled>Login</button>
+                <button type="submit" class="btn btn-primary btn-modal-login-client" id="clientLogin" disabled>Login</button>
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
               </div>
             </form>
@@ -242,6 +242,7 @@ session funcionando
 <script src="../js/creative.min.js"></script>
 <script src="../js/validar-form.js"></script>
 <script src="../js/valida-login.js"></script>
+<script src="../js/valida-login-client.js"></script>
 <script src="../js/service-worker.js"></script>
 <script src="../vendor/socket.io/socket.io.js"></script>
 <script src="../js/chatTemplate.js"></script>

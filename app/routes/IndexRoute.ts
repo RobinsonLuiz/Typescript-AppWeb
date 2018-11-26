@@ -35,7 +35,7 @@ class IndexRoute {
     get session(): object {
         return (req, res) => {
             setTimeout(() => {
-                res.redirect('/painel');
+                res.redirect('/administrador/painel');
             }, 500);
         };
     }

@@ -18,6 +18,10 @@
     background-color: #00e673;
 }
 
+.success-login-client {
+    background-color: #00e673;
+}
+
 .chat-online:hover {
     cursor: pointer;
 }
@@ -52,6 +56,10 @@
 }
 
 .error-login {
+    background-color: #ff5c33;
+}
+
+.error-login-client {
     background-color: #ff5c33;
 }
 

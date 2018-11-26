@@ -44,15 +44,17 @@ export default class Routes {
     }
     
     private rotas() {
-        this._router.get("/clientes/login", ClientRoute.login);
         this._router.get('/clientes/index', ClientRoute.index);
+        this._router.get("/clientes/profile", ClientRoute.profile);
+        this._router.post("/clientes/login/:user", ClientRoute.login);
+        this._router.get('/clientes/session/:id', ClientRoute.session);
         this._router.get("/", IndexRoute.index);
         this._router.get('/index', IndexRoute.index);
-        this._router.get('/sair', IndexRoute.logout);
-        this._router.get('/session/:id', IndexRoute.session);
-        this._router.get('/clientes', IndexRoute.clientes);
-        this._router.get('/painel', IndexRoute.painel);
-        this._router.get('/charts', IndexRoute.charts);
+        this._router.get('/administrador/sair', IndexRoute.logout);
+        this._router.get('/administrador/session/:id', IndexRoute.session);
+        this._router.get('/administrador/clientes', IndexRoute.clientes);
+        this._router.get('/administrador/painel', IndexRoute.painel);
+        this._router.get('/administrador/charts', IndexRoute.charts);
         this._router.post('/login/:user', LoginRoute.login);
         this._router.get('/confirmar/:id', LoginRoute.confirmLogin);
         this._router.post('/valida/clients/:client', RegisterRoute.validaClient);

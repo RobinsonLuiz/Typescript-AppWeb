@@ -32,7 +32,7 @@ var Cliente = (function () {
     });
     Object.defineProperty(Cliente.prototype, "situacao", {
         get: function () {
-            return this.situacao;
+            return this._situacao;
         },
         enumerable: true,
         configurable: true

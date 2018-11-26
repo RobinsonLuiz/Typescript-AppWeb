@@ -30,7 +30,7 @@ class Cliente {
     }
 
     get situacao() {
-        return this.situacao;
+        return this._situacao;
     }
 
     get senha() {

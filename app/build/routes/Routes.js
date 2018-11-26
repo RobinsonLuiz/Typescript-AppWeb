@@ -35,15 +35,17 @@ var Routes = (function () {
         }));
     };
     Routes.prototype.rotas = function () {
-        this._router.get("/clientes/login", ClientRoute_1.default.login);
         this._router.get('/clientes/index', ClientRoute_1.default.index);
+        this._router.get("/clientes/profile", ClientRoute_1.default.profile);
+        this._router.post("/clientes/login/:user", ClientRoute_1.default.login);
+        this._router.get('/clientes/session/:id', ClientRoute_1.default.session);
         this._router.get("/", IndexRoute_1.default.index);
         this._router.get('/index', IndexRoute_1.default.index);
-        this._router.get('/sair', IndexRoute_1.default.logout);
-        this._router.get('/session/:id', IndexRoute_1.default.session);
-        this._router.get('/clientes', IndexRoute_1.default.clientes);
-        this._router.get('/painel', IndexRoute_1.default.painel);
-        this._router.get('/charts', IndexRoute_1.default.charts);
+        this._router.get('/administrador/sair', IndexRoute_1.default.logout);
+        this._router.get('/administrador/session/:id', IndexRoute_1.default.session);
+        this._router.get('/administrador/clientes', IndexRoute_1.default.clientes);
+        this._router.get('/administrador/painel', IndexRoute_1.default.painel);
+        this._router.get('/administrador/charts', IndexRoute_1.default.charts);
         this._router.post('/login/:user', LoginRoute_1.default.login);
         this._router.get('/confirmar/:id', LoginRoute_1.default.confirmLogin);
         this._router.post('/valida/clients/:client', RegisterRoute_1.default.validaClient);

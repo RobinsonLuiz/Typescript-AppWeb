@@ -1,23 +1,21 @@
-import * as pg from 'pg';
+import * as mysql from 'mysql';
 
 class connectionFactory {
 
     private _config: object;
-    private _pool: any;
 
     constructor() {
-        this._config = {
-            user: 'postgres',
-            password: '325140',
-            database: 'controle_tarefas',
+        this._config = mysql.createPool({
             host: 'localhost',
-            port: 5432
-        }
-        this._pool = new pg.Pool(this._config);
+            port: '3307',
+            user: 'root',
+            password: 'root',
+            database: 'controledetarefas'
+        });
     }
 
     get pool() {
-        return this._pool;
+        return this._config;
     }
 }
 

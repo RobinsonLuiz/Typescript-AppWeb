@@ -22,8 +22,8 @@ class AdministradorController {
 
     public insert(req, res, administrador) {
         let admin = new Administrador(administrador.nome, administrador.email, administrador.telefone, administrador.ativado, administrador.senha,administrador.token);
-        this.postgres.query("select * from administrador where email = $1", [administrador.email], (err, results) => {
-            if (!err && results.rows.length > 0) {
+        this.postgres.query("select * from administrador where email = ?", [administrador.email], (err, results) => {
+            if (!err && results.length > 0) {
                 res.send({register: "cadastrado"});
             } else if (!err) {
                 let opEmail = {
@@ -39,7 +39,7 @@ class AdministradorController {
                 });
 
                 let insert_administrador = [admin.nome, admin.email, admin.telefone, admin.ativado, admin.senha, admin.token];
-                this.postgres.query("insert into administrador (nome,email,telefone,ativado,senha,token) VALUES ($1,$2,$3,$4,md5($5),$6)", insert_administrador, function(err, results) {
+                this.postgres.query("insert into administrador (nome,email,telefone,ativado,senha,token) VALUES (?,?,?,?,md5(?),?)", insert_administrador, function(err, results) {
                     if (!err) res.send({register: "OK"});
                     else res.send({register: false});
                 });
@@ -48,19 +48,19 @@ class AdministradorController {
     }
 
     public update(req, res) {
-        this.postgres.query("update administrador set senha = md5($1), token = '', ativado = 1 where id = $2", [req.body.senha, req.body.id], function(err, results) {
+        this.postgres.query("update administrador set senha = md5(?), token = '', ativado = 1 where id = ?", [req.body.senha, req.body.id], function(err, results) {
             if (!err) res.render("index", {administrador: false});
             else res.status(404).json("Ocorreu um erro no update");
         });
     };
 
     public login(req, res, user) {
-        this.postgres.query('select nome,id,ativado,email from administrador where email = $1 and senha = md5($2)', [user.email, user.senha], function(err, results) {
+        this.postgres.query('select nome,id,ativado,email from administrador where email = ? and senha = md5(?)', [user.email, user.senha], function(err, results) {
             if (!err) {
-                if (results.rows && results.rows.length > 0) {
-                    if (results.rows[0].ativado == 1) {
-                        req.session.administrador = results.rows[0];
-                        res.send(JSON.stringify({"OK": results.rows[0]}));
+                if (results && results.length > 0) {
+                    if (results[0].ativado == 1) {
+                        req.session.administrador = results[0];
+                        res.send(JSON.stringify({"OK": results[0]}));
                     } else {
                         res.send(JSON.stringify({"OK": "desatived"}));
                     }
@@ -70,8 +70,8 @@ class AdministradorController {
     }
 
     public confirmLogin(req, res) {
-        this.postgres.query("select email,id from administrador where token = $1 and token != ''", [String(req.params.id)], function(err, results) {
-            if(!err && results.rows.length > 0) res.render('confirmar', {administrador: results.rows[0]});
+        this.postgres.query("select email,id from administrador where token = ? and token != ''", [String(req.params.id)], function(err, results) {
+            if(!err && results.length > 0) res.render('confirmar', {administrador: results[0]});
             else res.status(404).json("Você já confirmou sua conta ou o código de acesso não existe");
         });
     }

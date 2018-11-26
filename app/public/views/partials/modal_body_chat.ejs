@@ -1,4 +1,4 @@
-<link rel="stylesheet" href="css/chat.css">
+<link rel="stylesheet" href="../css/chat.css">
 <div class="modal-header">
     <h4 class="modal-title" role="heading">Chat Online</h4>
     <button type="button" class="close" data-dismiss="modal">&times;</button>
@@ -15,10 +15,9 @@
         <input class="textarea" type="text" placeholder="Digita sua mensagem" id="textarea" />
     </div>
 </div>
-<script src="vendor/jquery/jquery.min.js"></script>
-<script src="vendor/socket.io/socket.io.js"></script>
-<script src="js/chatTemplate.js"></script>
+<script src="../vendor/jquery/jquery.min.js"></script>
+<script src="../vendor/socket.io/socket.io.js"></script>
+<script src="../js/chatTemplate.js"></script>
 <script>
-    
 iniciaChat('<%=encodeURIComponent(JSON.stringify(administrador))%>');
 </script>

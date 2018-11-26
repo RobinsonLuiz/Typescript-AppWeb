@@ -1,20 +1,19 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-var pg = require("pg");
+var mysql = require("mysql");
 var connectionFactory = (function () {
     function connectionFactory() {
-        this._config = {
-            user: 'postgres',
-            password: '325140',
-            database: 'controle_tarefas',
+        this._config = mysql.createPool({
             host: 'localhost',
-            port: 5432
-        };
-        this._pool = new pg.Pool(this._config);
+            port: '3307',
+            user: 'root',
+            password: 'root',
+            database: 'controledetarefas'
+        });
     }
     Object.defineProperty(connectionFactory.prototype, "pool", {
         get: function () {
-            return this._pool;
+            return this._config;
         },
         enumerable: true,
         configurable: true

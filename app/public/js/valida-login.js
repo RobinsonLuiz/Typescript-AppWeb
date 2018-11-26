@@ -8,7 +8,7 @@ login.addEventListener('click', async function() {
                 let email_login = validaEmail('emailLogin');
                 let senha_login = validaSenha();
                 let captcha = validaCaptcha();
-                if (email_login && senha_login && captcha) btn_login.removeAttribute('disabled');
+                if (email_login && senha_login /*&& captcha*/) btn_login.removeAttribute('disabled');
                 else btn_login.setAttribute('disabled', 'disabled');
             } else {
                 limparCamposLogin();

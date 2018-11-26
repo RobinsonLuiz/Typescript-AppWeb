@@ -78,7 +78,7 @@ var IndexRoute = (function () {
         get: function () {
             return function (req, res) {
                 setTimeout(function () {
-                    res.redirect('/painel');
+                    res.redirect('/administrador/painel');
                 }, 500);
             };
         },
