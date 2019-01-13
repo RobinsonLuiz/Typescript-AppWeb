@@ -15,7 +15,6 @@ CREATE TABLE cliente(id Integer NOT NULL PRIMARY KEY AUTO_INCREMENT,
     id_adm Integer NOT NULL,
     CONSTRAINT `foreignkey` FOREIGN KEY (id_adm) REFERENCES administrador (id));
 
-    select count(id) as mensagens from mensagens where id_usuario_recebe = $1 and lida = true
 
 CREATE TABLE mensagens(id Integer NOT NULL PRIMARY KEY AUTO_INCREMENT,
     id_usuario_recebe Integer NOT NULL,

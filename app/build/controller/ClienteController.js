@@ -97,7 +97,6 @@ var ClienteController = (function () {
         });
     };
     ClienteController.prototype.login = function (req, res, user) {
-        console.log(user.senha);
         this.postgres.query('select * from cliente where email = ? and senha = ?', [user.email, user.senha], function (err, results) {
             if (!err) {
                 if (results && results.length > 0) {

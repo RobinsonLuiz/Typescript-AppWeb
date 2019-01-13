@@ -36,6 +36,7 @@ var Routes = (function () {
     };
     Routes.prototype.rotas = function () {
         this._router.get('/clientes/index', ClientRoute_1.default.index);
+        this._router.get('/clientes/sair', ClientRoute_1.default.sair);
         this._router.get("/clientes/profile", ClientRoute_1.default.profile);
         this._router.post("/clientes/login/:user", ClientRoute_1.default.login);
         this._router.get('/clientes/session/:id', ClientRoute_1.default.session);

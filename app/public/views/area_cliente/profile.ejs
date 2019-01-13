@@ -39,11 +39,11 @@
             <div class="navbar-header">
                 <ul class="nav navbar-top-links navbar-right pull-right">
                     <li class="nav-item dropdown no-arrow" id="navbarResponsive">
-                        <a class="profile-pic nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true"
-                            aria-expanded="false">
-                            <img src="https://scontent.fpoa8-1.fna.fbcdn.net/v/t1.0-9/11885187_1611454302439445_2886069983194007660_n.jpg?_nc_cat=111&_nc_ht=scontent.fpoa8-1.fna&oh=6c468a9b4a34e2da3ce6cfa75300dd57&oe=5C7230A6"
-                                alt="user-img" width="36" class="img-circle">
-                            <b>Robinson Luiz</b>
+                        <a class="profile-pic nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+
+                            <b>
+                                <%= user.nome %></b>
                         </a>
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
                             <a class="dropdown-item" href="#" style="background-color: white;color: black">Configurações</a>
@@ -93,27 +93,44 @@
                     <div class="col-md-4 col-xs-12">
                         <div class="white-box">
                             <div class="user-bg">
-                                <img width="100%" alt="user" src="../plugins/images/large/img1.jpg">
                                 <div class="overlay-box">
                                     <div class="user-content">
-                                        <a href="javascript:void(0)">
-                                            <img src="https://scontent.fpoa8-1.fna.fbcdn.net/v/t1.0-9/11885187_1611454302439445_2886069983194007660_n.jpg?_nc_cat=111&_nc_ht=scontent.fpoa8-1.fna&oh=6c468a9b4a34e2da3ce6cfa75300dd57&oe=5C7230A6"
-                                                class="thumb-lg img-circle" alt="img">
-                                        </a>
-                                        <h4 class="text-white">Robinson Luiz</h4>
-                                        <h5 class="text-white">robinsontads@outlook.com</h5>
+                                        <div class="file-field">
+                                            <div class="mb-4">
+                                                <img class="imagem-upload" src="https://mdbootstrap.com/img/Photos/Others/placeholder-avatar.jpg"
+                                                    class="rounded-circle z-depth-1-half avatar-pic" alt="example placeholder avatar"
+                                                    width="50px" height="50px">
+                                            </div>
+                                            <div id="wrapper">
+                                                <input id="fileUpload" type="file"><br />
+                                                <div id="image-holder"></div>
+                                            </div>
+                                            <script>
+                                                document.querySelector("#fileUpload").addEventListener('change', function () {
+
+                                                    if (typeof (FileReader) != "undefined") {
+
+                                                        var image_holder = document.querySelector(".imagem-upload");
+
+                                                        var reader = new FileReader();
+                                                        reader.onload = function (e) {
+                                                            image_holder.src = e.target.result;
+                                                        }
+                                                        reader.readAsDataURL($(this)[0].files[0]);
+                                                    } else {
+                                                        alert("Este navegador nao suporta FileReader.");
+                                                    }
+                                                });
+                                            </script>
+                                        </div>
+
+                                        <h4 class="text-white">
+                                            <%= user.nome %>
+                                        </h4>
+                                        <h5 class="text-white">
+                                            <%= user.email %>
+                                        </h5>
                                     </div>
-                                </div>
-                            </div>
-                            <div class="user-btm-box">
-                                <div class="col-md-4 col-sm-4 text-center">
-                                    <h3>1</h3>
-                                </div>
-                                <div class="col-md-4 col-sm-4 text-center">
-                                    <h3>2</h3>
-                                </div>
-                                <div class="col-md-4 col-sm-4 text-center">
-                                    <h3>4</h3>
                                 </div>
                             </div>
                         </div>
@@ -124,22 +141,32 @@
                                 <div class="form-group">
                                     <label class="col-md-12">Nome Completo</label>
                                     <div class="col-md-12">
-                                        <input type="text" placeholder="Example" class="form-control form-control-line"> </div>
+                                        <input type="text" placeholder="Example" class="form-control form-control-line"
+                                            value="<%=user.nome%>"> </div>
                                 </div>
                                 <div class="form-group">
                                     <label for="example-email" class="col-md-12">Email</label>
                                     <div class="col-md-12">
-                                        <input type="email" placeholder="example@example.com" class="form-control form-control-line" name="example-email" id="example-email"> </div>
+                                        <input type="email" placeholder="example@example.com" class="form-control form-control-line"
+                                            value="<%=user.email%>" name="example-email" id="example-email"> </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="col-md-12">Senha</label>
                                     <div class="col-md-12">
-                                        <input type="password" value="password" class="form-control form-control-line"> </div>
+                                        <input type="password" value="password" class="form-control form-control-line"
+                                            value="<%= user.senha %>"> </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-12">Repetir Senha</label>
+                                    <div class="col-md-12">
+                                        <input type="password" value="password" class="form-control form-control-line"
+                                            value="<%= user.senha %>"> </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="col-md-12">Número telefone</label>
                                     <div class="col-md-12">
-                                        <input type="text" placeholder="123 456 7890" class="form-control form-control-line"> </div>
+                                        <input type="text" placeholder="123 456 7890" class="form-control form-control-line">
+                                    </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="col-md-12">Descrição</label>
@@ -150,13 +177,7 @@
                                 <div class="form-group">
                                     <label class="col-sm-12">Selecione seu estado</label>
                                     <div class="col-sm-12">
-                                        <select class="form-control form-control-line">
-                                            <option>Rio Grande do Sul</option>
-                                            <option>Santa Catarina</option>
-                                            <option>São Paulo</option>
-                                            <option>Rio de Janeiro</option>
-                                            <option>Minas Gerais</option>
-                                        </select>
+                                        <% include ../partials/estados.ejs %>
                                     </div>
                                 </div>
                                 <div class="form-group">

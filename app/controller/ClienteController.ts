@@ -32,8 +32,7 @@ class ClienteController {
                         from: "'Controle de Tarefas' <ecommerceTemp@gmail.com>",
                         to: cliente.email,
                         subject: "Confirmação de Cadastro",
-                        text: `Olá ${cliente.nome}, você foi cadastrado no controle de tarefas, sua senha é ${cliente.senha}
-                        Desconsidere caso não tenha feito nenhum pedido para fazer parte do controle de tarefas`
+                        text: this.createEmail(cliente)
                     };
 
                     this.mailer.transporter.sendMail(opEmail, function (err, info) {
@@ -54,8 +53,12 @@ class ClienteController {
         });
     }
 
+    public createEmail(cliente) {
+        return `Olá ${cliente.nome}, você foi cadastrado no controle de tarefas, sua senha é ${cliente.senha}
+        Desconsidere caso não tenha feito nenhum pedido para fazer parte do controle de tarefas`;
+    }
+
     public login(req, res, user) {
-        console.log(user.senha);
         this.postgres.query('select * from cliente where email = ? and senha = ?', [user.email, user.senha], function(err, results) {
             if (!err) {
                 if (results && results.length > 0) {

@@ -1,6 +1,7 @@
 import * as express from 'express';
 import IndexRoute from './IndexRoute';
 import LoginRoute from './LoginRoute';
+import AdministradorRoute from './AdministradorRoute';
 import RegisterRoute from './RegisterRoute';
 import ClientRoute from './ClientRoute';
 import * as path from 'path';
@@ -24,8 +25,8 @@ export default class Routes {
     };
 
     private middlewares() {
-        this.express.set('views', path.join(__dirname, '../../', 'public\/views'));
-        this.express.use(express.static(path.join(__dirname, '../../', 'public')));
+        this.express.set('views', path.join(__dirname, '../', 'public\/views'));
+        this.express.use(express.static(path.join(__dirname, '../', 'public')));
         this._session = 'session-storage';
         this._store = new session.MemoryStore();
         this._cookie = cookieParser(this._session);
@@ -44,17 +45,10 @@ export default class Routes {
     }
     
     private rotas() {
-        this._router.get('/clientes/index', ClientRoute.index);
-        this._router.get("/clientes/profile", ClientRoute.profile);
-        this._router.post("/clientes/login/:user", ClientRoute.login);
-        this._router.get('/clientes/session/:id', ClientRoute.session);
+        this._express.use('/clientes', ClientRoute);
+        this._express.use('/administrador', AdministradorRoute);
         this._router.get("/", IndexRoute.index);
         this._router.get('/index', IndexRoute.index);
-        this._router.get('/administrador/sair', IndexRoute.logout);
-        this._router.get('/administrador/session/:id', IndexRoute.session);
-        this._router.get('/administrador/clientes', IndexRoute.clientes);
-        this._router.get('/administrador/painel', IndexRoute.painel);
-        this._router.get('/administrador/charts', IndexRoute.charts);
         this._router.post('/login/:user', LoginRoute.login);
         this._router.get('/confirmar/:id', LoginRoute.confirmLogin);
         this._router.post('/valida/clients/:client', RegisterRoute.validaClient);
