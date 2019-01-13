@@ -1,10 +1,12 @@
 import connectionFactory from '../config/connectionFactory';
 import ClientController from '../controller/ClienteController';
+import { Router } from 'express';
 
 class IndexRoute {
 
     private _postgres: any;
-
+    public router: any = Router();
+    
     constructor() {
         this._postgres = connectionFactory.pool;
     }
@@ -59,7 +61,14 @@ class IndexRoute {
             } else res.render("403");
         }
     }
-}
- 
 
-export default new IndexRoute();
+    public init() {
+        this.router.get("/", this.index);
+        this.router.get('/index', this.index);
+    }
+} 
+
+let indexRouter = new IndexRoute();
+indexRouter.init();
+
+export default indexRouter.router;

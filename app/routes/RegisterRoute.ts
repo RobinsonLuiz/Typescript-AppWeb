@@ -3,16 +3,19 @@ import * as uuidv1 from 'uuid';
 import connectionFactory from '../config/connectionFactory';
 import AdministradorController from '../controller/AdministradorController';
 import ClienteController from '../controller/ClienteController';
+import { Router } from 'express';
 
 class RegisterRoute {
 
+
+    public router: any = Router();
 
     constructor() {}
 
 
     get ativar() {
         return (req , res) => {
-            AdministradorController.update(req, res,)
+            AdministradorController.update(req, res);
         }
     }
 
@@ -34,6 +37,15 @@ class RegisterRoute {
             ClienteController.insert(req, res, client);
         };
     };
-}
 
-export default new RegisterRoute();
+    public init() {
+        this.router.post('/valida/clients/:client', this.validaClient);
+        this.router.get('/verifica/:form', this.verificaForm);
+        this.router.post('/ativar', this.ativar);
+    }
+} 
+
+let registerRoute = new RegisterRoute();
+registerRoute.init();
+
+export default registerRoute.router;

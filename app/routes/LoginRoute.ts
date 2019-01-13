@@ -1,11 +1,13 @@
 import connectionFactory from '../config/connectionFactory';
 import AdministradorController from '../controller/AdministradorController';
 import * as recaptcha from 'express-recaptcha';
+import { Router } from 'express';
 
 class LoginRoute {
 
     private _postgres: any;
     private _recaptcha: any = recaptcha.Recaptcha;
+    public router: any = Router();
 
     constructor() {
         this._postgres = connectionFactory.pool;
@@ -29,6 +31,14 @@ class LoginRoute {
             AdministradorController.confirmLogin(req, res);
         }
     }
+
+    public init() {
+        this.router.post('/login/:user', this.login);
+        this.router.get('/confirmar/:id', this.confirmLogin);
+    }
 }
 
-export default new LoginRoute();
+let loginRouter = new LoginRoute();
+loginRouter.init();
+
+export default loginRouter.router;

@@ -47,14 +47,9 @@ export default class Routes {
     private rotas() {
         this._express.use('/clientes', ClientRoute);
         this._express.use('/administrador', AdministradorRoute);
-        this._router.get("/", IndexRoute.index);
-        this._router.get('/index', IndexRoute.index);
-        this._router.post('/login/:user', LoginRoute.login);
-        this._router.get('/confirmar/:id', LoginRoute.confirmLogin);
-        this._router.post('/valida/clients/:client', RegisterRoute.validaClient);
-        this._router.get('/verifica/:form', RegisterRoute.verificaForm);
-        this._router.post('/ativar', RegisterRoute.ativar);
-        this._express.use('/', this._router);
+        this._express.use("/", IndexRoute);
+        this._express.use("/", RegisterRoute);
+        this._express.use("/", LoginRoute);
     }
     
 
